@@ -1,5 +1,5 @@
 ﻿namespace Joltzis {
-    partial class StartMenu {
+    partial class formStartMenu {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartMenu));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formStartMenu));
             pictureBox1 = new PictureBox();
             btnPlay = new Button();
             button1 = new Button();
@@ -44,7 +44,7 @@
             // 
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = Properties.Resources.logo_joltzisM;
-            pictureBox1.Location = new Point(89, 145);
+            pictureBox1.Location = new Point(97, 145);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(604, 241);
             pictureBox1.TabIndex = 0;
@@ -85,7 +85,7 @@
             // 
             txtbPlayerName.Location = new Point(206, 680);
             txtbPlayerName.Name = "txtbPlayerName";
-            txtbPlayerName.Size = new Size(487, 31);
+            txtbPlayerName.Size = new Size(321, 31);
             txtbPlayerName.TabIndex = 4;
             txtbPlayerName.TextChanged += textBox1_TextChanged;
             // 
@@ -174,7 +174,7 @@
             label1.Text = "Difficult level:";
             label1.Click += label1_Click_1;
             // 
-            // StartMenu
+            // formStartMenu
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -192,7 +192,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "StartMenu";
+            Name = "formStartMenu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "JOLTZIS";
             Load += StartMenu_Load;

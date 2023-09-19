@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace Joltzis {
 
-    public partial class StartMenu : Form {
+    public partial class formStartMenu : Form {
 
         int difficultModifierInterval;
 
-        public StartMenu() {
+        public formStartMenu() {
             InitializeComponent();
         }
 

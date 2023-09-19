@@ -30,9 +30,17 @@
             label1 = new Label();
             bindingSource1 = new BindingSource(components);
             label2 = new Label();
+            panelPause = new PictureBox();
+            pbNextBlock = new PictureBox();
+            pbPauseBtn = new PictureBox();
+            btnExit = new Button();
+            btnResume = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)panelPause).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbNextBlock).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbPauseBtn).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -48,7 +56,7 @@
             // 
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.Image = Properties.Resources.logo_joltzis;
-            pictureBox2.Location = new Point(511, 73);
+            pictureBox2.Location = new Point(510, 42);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(271, 103);
             pictureBox2.TabIndex = 1;
@@ -81,15 +89,84 @@
             label2.Text = "Next block:";
             label2.Click += label2_Click;
             // 
+            // panelPause
+            // 
+            panelPause.Enabled = false;
+            panelPause.Image = Properties.Resources.pause_screen;
+            panelPause.Location = new Point(5, 0);
+            panelPause.Name = "panelPause";
+            panelPause.Size = new Size(793, 1000);
+            panelPause.TabIndex = 5;
+            panelPause.TabStop = false;
+            panelPause.Visible = false;
+            panelPause.Click += panelPause_Click;
+            // 
+            // pbNextBlock
+            // 
+            pbNextBlock.Location = new Point(550, 332);
+            pbNextBlock.Name = "pbNextBlock";
+            pbNextBlock.Size = new Size(215, 198);
+            pbNextBlock.TabIndex = 9;
+            pbNextBlock.TabStop = false;
+            pbNextBlock.Click += pbNextBlock_Click;
+            // 
+            // pbPauseBtn
+            // 
+            pbPauseBtn.BackColor = Color.Black;
+            pbPauseBtn.Enabled = false;
+            pbPauseBtn.Image = Properties.Resources.pause_iconFT1;
+            pbPauseBtn.Location = new Point(167, 127);
+            pbPauseBtn.Name = "pbPauseBtn";
+            pbPauseBtn.Size = new Size(458, 458);
+            pbPauseBtn.TabIndex = 12;
+            pbPauseBtn.TabStop = false;
+            pbPauseBtn.Visible = false;
+            // 
+            // btnExit
+            // 
+            btnExit.BackColor = Color.Black;
+            btnExit.Enabled = false;
+            btnExit.Font = new Font("Cascadia Mono SemiBold", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            btnExit.ForeColor = Color.White;
+            btnExit.Location = new Point(281, 799);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(286, 74);
+            btnExit.TabIndex = 11;
+            btnExit.Text = "Exit to menu";
+            btnExit.UseVisualStyleBackColor = false;
+            btnExit.Visible = false;
+            btnExit.Click += btnExit_Click_1;
+            // 
+            // btnResume
+            // 
+            btnResume.BackColor = Color.Teal;
+            btnResume.Enabled = false;
+            btnResume.Font = new Font("Cascadia Code SemiBold", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            btnResume.ForeColor = Color.White;
+            btnResume.Location = new Point(281, 702);
+            btnResume.Name = "btnResume";
+            btnResume.Size = new Size(286, 74);
+            btnResume.TabIndex = 10;
+            btnResume.Text = "Resume";
+            btnResume.UseVisualStyleBackColor = false;
+            btnResume.Visible = false;
+            btnResume.Click += btnResume_Click_1;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(793, 1001);
+            Controls.Add(pbPauseBtn);
+            Controls.Add(btnExit);
+            Controls.Add(btnResume);
+            Controls.Add(panelPause);
+            Controls.Add(pbNextBlock);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
@@ -101,6 +178,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)panelPause).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbNextBlock).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbPauseBtn).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -112,5 +192,10 @@
         private Label label1;
         private BindingSource bindingSource1;
         private Label label2;
+        private PictureBox panelPause;
+        private PictureBox pbNextBlock;
+        private PictureBox pbPauseBtn;
+        private Button btnExit;
+        private Button btnResume;
     }
 }
