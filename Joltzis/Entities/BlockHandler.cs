@@ -84,11 +84,9 @@ namespace Joltzis {
                             { 1, 1, 0 }
                         }
                     }
-                    // new shapes can be added here..
                 };
         }
 
-        // Get a shape form the array in a random basis
         public static Block GetRandomShape() {
 
             var shape = shapesArray[new Random().Next(shapesArray.Length)];

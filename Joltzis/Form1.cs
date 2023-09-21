@@ -138,17 +138,14 @@ namespace Joltzis {
             return shape;
         }
 
-        // returns if it reaches the bottom or touches any other blocks
         private bool moveShapeIfPossible(int moveDown = 0, int moveSide = 0) {
             var newX = currentX + moveSide;
             var newY = currentY + moveDown;
 
-            // check if it reaches the bottom or side bar
             if (newX < 0 || newX + currentBlock.Width > canvasWidth
                 || newY + currentBlock.Height > canvasHeight)
                 return false;
 
-            // check if it touches any other blocks 
             for (int i = 0; i < currentBlock.Width; i++) {
                 for (int j = 0; j < currentBlock.Height; j++) {
                     if (newY + j > 0 && canvasDotArray[newX + i, newY + j] != 0 && currentBlock.Dots[j, i] != 0)
@@ -196,22 +193,25 @@ namespace Joltzis {
             for (int i = 0; i < currentBlock.Width; i++) {
                 for (int j = 0; j < currentBlock.Height; j++) {
                     if (currentBlock.Dots[j, i] == 1) {
-                        checkIfGameOver();
-                        canvasDotArray[currentX + i, currentY + j] = currentBlock.Id;
+                        if (!checkIfGameOver()){ 
+                            canvasDotArray[currentX + i, currentY + j] = currentBlock.Id;
+                        }else {
+                            return;
+                        }
                     }
                 }
             }
         }
 
         
-        private void checkIfGameOver() {
+        private bool checkIfGameOver() {
             if (currentY < 0) {
 
                 SaveScore saveScore = new SaveScore(pn, score);
                 
                 timer.Stop();
                 DialogResult result = MessageBox.Show("Play again?", "Game Over", MessageBoxButtons.YesNo);
-
+                
                 switch (result) {
                     case DialogResult.Yes:
                         //this.Close();
@@ -225,16 +225,16 @@ namespace Joltzis {
                         break;
                 }
 
-                return;
+                return true;
             }
+
+            return false;
         }
 
         private void Timer_Tick(object sender, EventArgs e) {
             var isMoveSuccess = moveShapeIfPossible(moveDown: 1);
 
-            // if shape reached bottom or touched any other shapes
             if (!isMoveSuccess) {
-                // copy working image into canvas image
                 canvasBitmap = new Bitmap(workingBitmap);
 
                 updateCanvasDotArrayWithCurrentShape();
@@ -251,7 +251,6 @@ namespace Joltzis {
         int score;
         int level = 0;
         public void clearFilledRowsAndUpdateScore() {
-            // check through each rows
             for (int i = 0; i < canvasHeight; i++) {
                 int j;
                 for (j = canvasWidth - 1; j >= 0; j--) {
@@ -260,15 +259,12 @@ namespace Joltzis {
                 }
 
                 if (j == -1) {
-                    // update score and level values and labels
                     score += 125;
                     level++;
                     label1.Text = "Score: " + score;
                     label2.Text = "Level: " + level;
-                    // increase the speed 
                     timer.Interval -= 10;
 
-                    // update the dot array based on the check
                     for (j = 0; j < canvasWidth; j++) {
                         for (int k = i; k > 0; k--) {
                             canvasDotArray[j, k] = canvasDotArray[j, k - 1];
@@ -279,7 +275,6 @@ namespace Joltzis {
                 }
             }
 
-            // Draw panel based on the updated array values
             for (int i = 0; i < canvasWidth; i++) {
                 for (int j = 0; j < canvasHeight; j++) {
 
@@ -305,13 +300,11 @@ namespace Joltzis {
 
             var shape = stackBlocks.GetNextItem();
 
-            // Codes to show the next shape in the side panel
             nextShapeBitmap = new Bitmap(6 * dotSize, 6 * dotSize);
             nextShapeGraphics = Graphics.FromImage(nextShapeBitmap);
 
             nextShapeGraphics.FillRectangle(Brushes.WhiteSmoke, -40, 0, 250, 250);
 
-            // Find the ideal position for the shape in the side panel
             var startX = (6 - shape.Width) / 2;
             var startY = (6 - shape.Height) / 2;
 
@@ -378,6 +371,7 @@ namespace Joltzis {
         }
 
         private void btnExit_Click_1(object sender, EventArgs e) {
+            this.Close();
             formStartMenu smForm = new formStartMenu();
             smForm.Show();
         }

@@ -16,8 +16,6 @@ namespace Joltzis {
         private int[,] backupDots;
 
         public void Rotate() {
-            // back the dots values into backup dots
-            // so that it can be simply used for rolling back
             backupDots = Dots;
 
             Dots = new int[Width, Height];

@@ -16,6 +16,7 @@ namespace Joltzis {
 
         int difficultModifierInterval;
         string playerName;
+
         public formStartMenu() {
             InitializeComponent();
         }
@@ -93,7 +94,10 @@ namespace Joltzis {
                 this.dataGridView1.DataSource = table;
             }
 
-
+            if (dataGridView1.Columns["scoreJogador"] != null)
+                dataGridView1.Columns["scoreJogador"].HeaderText = "Score";
+            if (dataGridView1.Columns["nomeJogador"] != null)
+                dataGridView1.Columns["nomeJogador"].HeaderText = "Jogador";
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {
