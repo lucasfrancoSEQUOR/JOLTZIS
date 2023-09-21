@@ -9,12 +9,15 @@ namespace Joltzis {
         Block currentBlock;
         Block nextBlock;
 
+        string pn;
+
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
-        public Form1(int difficultModifierInterval) {
+        public Form1(int difficultModifierInterval, string textboxNome) {
             InitializeComponent();
             loadCanvas();
 
+            pn = textboxNome;
             stackBlocks = new StackTetris<Block>(new(BlockHandler.shapesArray));
 
             for (int i = 0; i < 125; i++) {
@@ -61,8 +64,6 @@ namespace Joltzis {
 
             var isMoveSuccess = moveShapeIfPossible(horizontalMove, verticalMove);
 
-            // if the player was trying to rotate the shape, but
-            // that move was not possible - rollback the shape
             if (!isMoveSuccess && e.KeyCode == Keys.Up)
                 currentBlock.Rollback();
         }
@@ -72,8 +73,8 @@ namespace Joltzis {
 
             if (timer.Enabled == true) {
                 timer.Enabled = false;
-                pbPauseBtn.Visible = true;
-                pbPauseBtn.Enabled = true;
+                lbPause.Visible = true;
+                lbPause.Enabled = true;
                 btnExit.Visible = true;
                 btnExit.Enabled = true;
                 btnResume.Enabled = true;
@@ -88,8 +89,8 @@ namespace Joltzis {
                 timer.Enabled = true;
                 btnResume.Enabled = false;
                 btnResume.Visible = false;
-                pbPauseBtn.Visible = false;
-                pbPauseBtn.Enabled = false;
+                lbPause.Visible = false;
+                lbPause.Enabled = false;
                 btnExit.Visible = false;
                 btnExit.Enabled = false;
                 panelPause.Visible = false;
@@ -109,11 +110,9 @@ namespace Joltzis {
         int nextBlockDotSize = 20;
 
         private void loadCanvas() {
-            // Resize the picture box based on the dotsize and canvas size
             pictureBox1.Width = canvasWidth * dotSize;
             pictureBox1.Height = canvasHeight * dotSize;
 
-            // Create Bitmap with picture box's size
 
             canvasBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
 
@@ -121,10 +120,8 @@ namespace Joltzis {
 
             canvasGraphics.FillRectangle(Brushes.White, 0, 0, canvasBitmap.Width, canvasBitmap.Height);
 
-            // Load bitmap into picture box
             pictureBox1.Image = canvasBitmap;
 
-            // Initialize canvas dot array. by default all elements are zero
             canvasDotArray = new int[canvasWidth, canvasHeight];
         }
 
@@ -132,11 +129,9 @@ namespace Joltzis {
         int currentY;
 
         private Block getRandomShapeWithCenterAligned() {
-            //var shape = BlockHandler.GetRandomShape();
             var shape = stackBlocks.Pop();
             stackBlocks.GenerateRandomItem();
 
-            // Calculate the x and y values as if the shape lies in the center
             currentX = 4;
             currentY = -shape.Height;
 
@@ -202,18 +197,35 @@ namespace Joltzis {
                 for (int j = 0; j < currentBlock.Height; j++) {
                     if (currentBlock.Dots[j, i] == 1) {
                         checkIfGameOver();
-
                         canvasDotArray[currentX + i, currentY + j] = currentBlock.Id;
                     }
                 }
             }
         }
 
+        
         private void checkIfGameOver() {
             if (currentY < 0) {
+
+                SaveScore saveScore = new SaveScore(pn, score);
+                
                 timer.Stop();
-                MessageBox.Show("Game Over");
-                Application.Restart();
+                DialogResult result = MessageBox.Show("Play again?", "Game Over", MessageBoxButtons.YesNo);
+
+                switch (result) {
+                    case DialogResult.Yes:
+                        //this.Close();
+                        Application.Restart();
+                        break;
+                    case DialogResult.No:
+                        Application.Exit();
+                        break;
+                    default:
+                        Application.Exit();
+                        break;
+                }
+
+                return;
             }
         }
 
@@ -237,7 +249,7 @@ namespace Joltzis {
         }
 
         int score;
-
+        int level = 0;
         public void clearFilledRowsAndUpdateScore() {
             // check through each rows
             for (int i = 0; i < canvasHeight; i++) {
@@ -249,9 +261,10 @@ namespace Joltzis {
 
                 if (j == -1) {
                     // update score and level values and labels
-                    score++;
+                    score += 125;
+                    level++;
                     label1.Text = "Score: " + score;
-                    label2.Text = "Level: " + score / 10;
+                    label2.Text = "Level: " + level;
                     // increase the speed 
                     timer.Interval -= 10;
 
@@ -367,6 +380,10 @@ namespace Joltzis {
         private void btnExit_Click_1(object sender, EventArgs e) {
             formStartMenu smForm = new formStartMenu();
             smForm.Show();
+        }
+
+        private void lbPressEsc_Click(object sender, EventArgs e) {
+
         }
     }
 }

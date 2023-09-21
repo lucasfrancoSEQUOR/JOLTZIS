@@ -23,10 +23,11 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formStartMenu));
             pictureBox1 = new PictureBox();
             btnPlay = new Button();
-            button1 = new Button();
+            btnRank = new Button();
             btnConfig = new Button();
             txtbPlayerName = new TextBox();
             lbMenu1 = new Label();
@@ -36,8 +37,16 @@
             rdbtnNormal = new RadioButton();
             rdbtnEasy = new RadioButton();
             label1 = new Label();
+            pnBgListView = new Panel();
+            label3 = new Label();
+            label2 = new Label();
+            dataGridView1 = new DataGridView();
+            dbJoltzisBindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelConfig.SuspendLayout();
+            pnBgListView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dbJoltzisBindingSource).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -62,14 +71,15 @@
             btnPlay.UseVisualStyleBackColor = true;
             btnPlay.Click += btnPlay_Click;
             // 
-            // button1
+            // btnRank
             // 
-            button1.Image = Properties.Resources.ranking_icon2;
-            button1.Location = new Point(89, 757);
-            button1.Name = "button1";
-            button1.Size = new Size(82, 83);
-            button1.TabIndex = 2;
-            button1.UseVisualStyleBackColor = true;
+            btnRank.Image = Properties.Resources.ranking_icon2;
+            btnRank.Location = new Point(89, 757);
+            btnRank.Name = "btnRank";
+            btnRank.Size = new Size(82, 83);
+            btnRank.TabIndex = 2;
+            btnRank.UseVisualStyleBackColor = true;
+            btnRank.Click += btnRank_Click;
             // 
             // btnConfig
             // 
@@ -174,6 +184,61 @@
             label1.Text = "Difficult level:";
             label1.Click += label1_Click_1;
             // 
+            // pnBgListView
+            // 
+            pnBgListView.BackColor = Color.DimGray;
+            pnBgListView.Controls.Add(label3);
+            pnBgListView.Controls.Add(label2);
+            pnBgListView.Controls.Add(dataGridView1);
+            pnBgListView.Enabled = false;
+            pnBgListView.Location = new Point(181, 434);
+            pnBgListView.Name = "pnBgListView";
+            pnBgListView.Size = new Size(346, 557);
+            pnBgListView.TabIndex = 8;
+            pnBgListView.Visible = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Cascadia Code", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = Color.FromArgb(255, 210, 81);
+            label3.Location = new Point(38, 17);
+            label3.Name = "label3";
+            label3.Size = new Size(41, 47);
+            label3.TabIndex = 1;
+            label3.Text = "#";
+            label3.Click += label2_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Cascadia Code", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.FromArgb(255, 210, 81);
+            label2.Location = new Point(125, 17);
+            label2.Name = "label2";
+            label2.Size = new Size(167, 47);
+            label2.TabIndex = 1;
+            label2.Text = "Ranking";
+            label2.Click += label2_Click;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.BackgroundColor = Color.White;
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.GridColor = SystemColors.GradientActiveCaption;
+            dataGridView1.Location = new Point(0, 80);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.RowTemplate.Height = 33;
+            dataGridView1.Size = new Size(346, 477);
+            dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // dbJoltzisBindingSource
+            // 
+            dbJoltzisBindingSource.DataSource = typeof(DbJoltzis);
+            // 
             // formStartMenu
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -181,12 +246,13 @@
             BackColor = SystemColors.ControlLightLight;
             BackgroundImage = Properties.Resources.BACKGROUN2;
             ClientSize = new Size(793, 1001);
+            Controls.Add(pnBgListView);
             Controls.Add(panelConfig);
             Controls.Add(lbMenuWarning);
             Controls.Add(lbMenu1);
             Controls.Add(txtbPlayerName);
             Controls.Add(btnConfig);
-            Controls.Add(button1);
+            Controls.Add(btnRank);
             Controls.Add(btnPlay);
             Controls.Add(pictureBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -199,6 +265,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelConfig.ResumeLayout(false);
             panelConfig.PerformLayout();
+            pnBgListView.ResumeLayout(false);
+            pnBgListView.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dbJoltzisBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -207,7 +277,7 @@
 
         private PictureBox pictureBox1;
         private Button btnPlay;
-        private Button button1;
+        private Button btnRank;
         private Button btnConfig;
         private TextBox txtbPlayerName;
         private Label lbMenu1;
@@ -217,5 +287,10 @@
         private RadioButton rdbtnNormal;
         private RadioButton rdbtnEasy;
         private Label label1;
+        private Panel pnBgListView;
+        private DataGridView dataGridView1;
+        private BindingSource dbJoltzisBindingSource;
+        private Label label2;
+        private Label label3;
     }
 }

@@ -32,15 +32,15 @@
             label2 = new Label();
             panelPause = new PictureBox();
             pbNextBlock = new PictureBox();
-            pbPauseBtn = new PictureBox();
             btnExit = new Button();
             btnResume = new Button();
+            label3 = new Label();
+            lbPause = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)panelPause).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbNextBlock).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pbPauseBtn).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -92,8 +92,8 @@
             // panelPause
             // 
             panelPause.Enabled = false;
-            panelPause.Image = Properties.Resources.pause_screen;
-            panelPause.Location = new Point(5, 0);
+            panelPause.Image = Properties.Resources.BACKGROUN2;
+            panelPause.Location = new Point(3, 0);
             panelPause.Name = "panelPause";
             panelPause.Size = new Size(793, 1000);
             panelPause.TabIndex = 5;
@@ -110,25 +110,13 @@
             pbNextBlock.TabStop = false;
             pbNextBlock.Click += pbNextBlock_Click;
             // 
-            // pbPauseBtn
-            // 
-            pbPauseBtn.BackColor = Color.Black;
-            pbPauseBtn.Enabled = false;
-            pbPauseBtn.Image = Properties.Resources.pause_iconFT1;
-            pbPauseBtn.Location = new Point(167, 127);
-            pbPauseBtn.Name = "pbPauseBtn";
-            pbPauseBtn.Size = new Size(458, 458);
-            pbPauseBtn.TabIndex = 12;
-            pbPauseBtn.TabStop = false;
-            pbPauseBtn.Visible = false;
-            // 
             // btnExit
             // 
-            btnExit.BackColor = Color.Black;
+            btnExit.BackColor = Color.Transparent;
             btnExit.Enabled = false;
             btnExit.Font = new Font("Cascadia Mono SemiBold", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            btnExit.ForeColor = Color.White;
-            btnExit.Location = new Point(281, 799);
+            btnExit.ForeColor = Color.Black;
+            btnExit.Location = new Point(261, 799);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(286, 74);
             btnExit.TabIndex = 11;
@@ -143,7 +131,7 @@
             btnResume.Enabled = false;
             btnResume.Font = new Font("Cascadia Code SemiBold", 16F, FontStyle.Bold, GraphicsUnit.Point);
             btnResume.ForeColor = Color.White;
-            btnResume.Location = new Point(281, 702);
+            btnResume.Location = new Point(262, 702);
             btnResume.Name = "btnResume";
             btnResume.Size = new Size(286, 74);
             btnResume.TabIndex = 10;
@@ -152,12 +140,36 @@
             btnResume.Visible = false;
             btnResume.Click += btnResume_Click_1;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = SystemColors.Control;
+            label3.Font = new Font("Cascadia Mono SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = SystemColors.ControlDarkDark;
+            label3.Location = new Point(583, 913);
+            label3.Name = "label3";
+            label3.Size = new Size(182, 64);
+            label3.TabIndex = 14;
+            label3.Text = "Press 'Esc' \r\nto pause";
+            // 
+            // lbPause
+            // 
+            lbPause.AutoSize = true;
+            lbPause.BackColor = Color.Transparent;
+            lbPause.Font = new Font("Cascadia Code", 36F, FontStyle.Bold, GraphicsUnit.Point);
+            lbPause.Location = new Point(280, 332);
+            lbPause.Name = "lbPause";
+            lbPause.Size = new Size(250, 95);
+            lbPause.TabIndex = 15;
+            lbPause.Text = "Pause";
+            lbPause.Visible = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(793, 1001);
-            Controls.Add(pbPauseBtn);
+            Controls.Add(lbPause);
             Controls.Add(btnExit);
             Controls.Add(btnResume);
             Controls.Add(panelPause);
@@ -166,6 +178,7 @@
             Controls.Add(label1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
+            Controls.Add(label3);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
@@ -180,7 +193,6 @@
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)panelPause).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbNextBlock).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pbPauseBtn).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -194,8 +206,11 @@
         private Label label2;
         private PictureBox panelPause;
         private PictureBox pbNextBlock;
-        private PictureBox pbPauseBtn;
         private Button btnExit;
         private Button btnResume;
+        private Label label3;
+        private Label lbPause;
+        public string txtPlayerName;
+
     }
 }
